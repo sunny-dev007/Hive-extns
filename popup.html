@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hive Extension</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      width: 200px;
+      padding: 10px;
+    }
+
+    button {
+      padding: 10px;
+      background-color: #3c786e;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Hive Portal</h1>
+  <button id="openSidePanel">Capture Snapshot</button>
+
+  <script>
+    document.getElementById('openSidePanel').addEventListener('click', () => {
+      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        // Toggle the side panel: if open, close it; if closed, open it
+        chrome.scripting.executeScript({
+          target: { tabId: tabs[0].id },
+          function: toggleSidePanel // Calls toggle function in contentScript
+        });
+        // Close the popup immediately after action
+        window.close();
+      });
+    });
+  </script>
+</body>
+</html>

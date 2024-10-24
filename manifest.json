@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "Hive Extn V2",
+  "version": "1.0.4",
+  "description": "A brief description of your extension.",
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": [
+    "identity",
+    "scripting",
+    "activeTab",
+    "storage",
+    "tabs"
+  ],
+  "action": {
+    "default_icon": "hrlogo.png"
+  },
+  "icons": {
+    "48": "hrlogo.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["contentScript.js"]
+    }
+  ]
+}
